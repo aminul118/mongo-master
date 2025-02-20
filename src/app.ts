@@ -1,11 +1,17 @@
-import express from "express";
-const app = express();
-const port = 5000;
+import express, { Application, Request, Response } from "express";
+import cors from "cors";
+const app: Application = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Root Server API
+app.get("/", (req: Request, res: Response) => {
+  res.send({
+    status: 200,
+    Message: "Server Running",
+  });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+export default app;
